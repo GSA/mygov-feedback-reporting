@@ -1,0 +1,5 @@
+<ul id="domains">
+<% domains.each( function(domain) { %>
+  <li><%= domain.get("hostname") %></li>
+<% }); %>
+</ul>

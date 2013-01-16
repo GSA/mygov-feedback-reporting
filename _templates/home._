@@ -1,0 +1,6 @@
+<h1>MyGovBar Feedback</h1>
+
+<form>
+  <label>Query:<input type="text" name="query" /></label>
+  <input type="button" value="submit" />
+</form>
