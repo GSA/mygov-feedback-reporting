@@ -3,7 +3,7 @@
 <h3>Page Stats</h3>
 <ul id="page_stats">
   <li><strong>URL:</strong> <%= page.url %></li>
-  <li><strong>Average Rating:</strong> <%= page.avg_rating %></li>
+  <li><strong>Average Rating:</strong> <%= page.avg_rating %> (<%= page.num_rating %>)</li>
   <li><strong>Domain:</strong> <a href="#domains/<%= page.domain.id %>"><%= page.domain.hostname %></a></li>
   <li><strong>Path:</strong> <%= page.path %></li>
 </ul>

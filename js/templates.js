@@ -53,7 +53,9 @@ __p+='<h2>'+
 ( page.url )+
 '</li>\n  <li><strong>Average Rating:</strong> '+
 ( page.avg_rating )+
-'</li>\n  <li><strong>Domain:</strong> <a href="#domains/'+
+' ('+
+( page.num_rating )+
+')</li>\n  <li><strong>Domain:</strong> <a href="#domains/'+
 ( page.domain.id )+
 '">'+
 ( page.domain.hostname )+
