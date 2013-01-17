@@ -96,7 +96,7 @@ class Application.Views.Domains extends Backbone.View
   el: "#content"
 
   render: =>
-    @$el.html JST.domains domains: @collection.toJSON()
+    @$el.html JST.domains domains: @collection.toJSON(), query: Application.domains.query
     
 #router
 class Router extends Backbone.Router

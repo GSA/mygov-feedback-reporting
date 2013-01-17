@@ -39,7 +39,9 @@ return __p;
 this["JST"]["domains"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<ul id="domains">\n';
+__p+='<h2>Domains matching "'+
+( query )+
+'"</h2>\n\n<ul id="domains">\n';
  _.each( domains, function(domain) { 
 ;__p+='\n  <li class="domain">\n    <a href="#domains/'+
 ( domain.id )+
@@ -55,7 +57,7 @@ return __p;
 this["JST"]["home"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<h1>MyGovBar Feedback</h1>\n\n<form>\n  <label>Query:<input type="text" name="query" id="query" value="gov." /></label>\n  <input type="submit" value="submit" />\n</form>';
+__p+='<div class="row">\n  <div class="span row4 offset4">\n    <p>Search by reverse domain to begin <em>e.g.,</em> <code>gov.whitehouse.</code></p>\n    \n    <form class="form-search">\n      <input type="text" name="query" id="query" value="gov." class="input-medium search-query" />\n      <input type="submit" class="btn" value = "search" />\n    </form>\n  </div>\n</div>';
 }
 return __p;
 };

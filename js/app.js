@@ -248,7 +248,8 @@
 
     Domains.prototype.render = function() {
       return this.$el.html(JST.domains({
-        domains: this.collection.toJSON()
+        domains: this.collection.toJSON(),
+        query: Application.domains.query
       }));
     };
 

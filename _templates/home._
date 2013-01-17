@@ -1,6 +1,10 @@
-<h1>MyGovBar Feedback</h1>
-
-<form>
-  <label>Query:<input type="text" name="query" id="query" value="gov." /></label>
-  <input type="submit" value="submit" />
-</form>
+<div class="row">
+  <div class="span row4 offset4">
+    <p>Search by reverse domain to begin <em>e.g.,</em> <code>gov.whitehouse.</code></p>
+    
+    <form class="form-search">
+      <input type="text" name="query" id="query" value="gov." class="input-medium search-query" />
+      <input type="submit" class="btn" value = "search" />
+    </form>
+  </div>
+</div>
