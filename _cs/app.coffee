@@ -49,7 +49,7 @@ class Application.Views.Home extends Backbone.View
     
   query: (e) ->
     e.preventDefault()
-    Application.router.navigate "domain/" + $("#query").val(), true
+    Application.router.navigate "domains/" + $("#query").val(), true
     false
     
 class Application.Views.Page extends Backbone.View
@@ -113,4 +113,4 @@ class Router extends Backbone.Router
     
     
 Application.router = new Router()
-Backbone.history.start()
+Backbone.history.start base: "/mygov-feedback-reporting/"

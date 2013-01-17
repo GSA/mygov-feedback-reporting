@@ -119,7 +119,7 @@
 
     Home.prototype.query = function(e) {
       e.preventDefault();
-      Application.router.navigate("domain/" + $("#query").val(), true);
+      Application.router.navigate("domains/" + $("#query").val(), true);
       return false;
     };
 
