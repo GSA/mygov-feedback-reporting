@@ -39,7 +39,7 @@ return __p;
 this["JST"]["home"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<h1>MyGovBar Feedback</h1>\n\n<form>\n  <label>Query:<input type="text" name="query" id="query" /></label>\n  <input type="submit" value="submit" />\n</form>';
+__p+='<h1>MyGovBar Feedback</h1>\n\n<form>\n  <label>Query:<input type="text" name="query" id="query" value="gov." /></label>\n  <input type="submit" value="submit" />\n</form>';
 }
 return __p;
 };
