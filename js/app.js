@@ -276,6 +276,8 @@
 
   Application.router = new Router();
 
-  Backbone.history.start();
+  Backbone.history.start({
+    base: "/mygov-feedback-reporting/"
+  });
 
 }).call(this);
