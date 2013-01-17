@@ -88,7 +88,7 @@ class Router extends Backbone.Router
   routes:
     "": "home"
     "domains/:query": "query"
-    "page/:page": "page"
+    "pages/:page": "page"
     
   home: ->
     view = new Application.Views.Home()

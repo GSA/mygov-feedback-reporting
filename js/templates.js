@@ -7,7 +7,7 @@ __p+='<h3>'+
 ( domain.hostname )+
 '</h3>\n<ul class="pages">\n  ';
  _.each( domain.pages, function(page){ 
-;__p+='\n    <li class="page"><a href="#page/'+
+;__p+='\n    <li class="page"><a href="#pages/'+
 ( page.id )+
 '">'+
 ( page.title || "(no title)" )+

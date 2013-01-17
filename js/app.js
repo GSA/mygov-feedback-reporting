@@ -225,7 +225,7 @@
     Router.prototype.routes = {
       "": "home",
       "domains/:query": "query",
-      "page/:page": "page"
+      "pages/:page": "page"
     };
 
     Router.prototype.home = function() {
