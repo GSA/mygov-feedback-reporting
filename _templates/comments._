@@ -2,7 +2,7 @@
   <% _.each( comments, function(comment){ %>
     <li class="comment">
       <div class="body"><%= comment.body %></div>
-      <div class="meta"><%= comment.created_at %></div>
+      <div class="meta"><%= moment(comment.created_at).fromNow() %></div>
     </li>
   <% }) %>
 </li>

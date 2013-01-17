@@ -8,7 +8,7 @@ __p+='<ul id="comments">\n  ';
 ;__p+='\n    <li class="comment">\n      <div class="body">'+
 ( comment.body )+
 '</div>\n      <div class="meta">'+
-( comment.created_at )+
+( moment(comment.created_at).fromNow() )+
 '</div>\n    </li>\n  ';
  }) 
 ;__p+='\n</li>';
