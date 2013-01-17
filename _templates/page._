@@ -1,0 +1,18 @@
+<h2><%= page.title %></h2>
+
+<h3>Page Stats</h3>
+<ul id="page_stats">
+  <li><strong>URL:</strong> <%= page.url %></li>
+  <li><strong>Average Rating:</strong> <%= page.avg_rating %></li>
+  <li><strong>Domain:</strong> <a href="#domain/<%= page.domain.id %>"><%= page.domain.hostname %></a></li>
+  <li><strong>Path:</strong> <%= page.path %></li>
+</ul>
+
+<h3>Similar Pages</h3>
+<ul id="related">
+  <% _.each( page.related, function(related){ %>
+    <li><a href="#pages/<%= related.id %>"><%= related.title %></a></li>
+  <% }) %>
+</ul>
+
+<h3>Comments</h3>

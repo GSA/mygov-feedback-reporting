@@ -1,5 +1,7 @@
 <ul id="domains">
-<% domains.each( function(domain) { %>
-  <li><%= domain.get("hostname") %></li>
+<% _.each( domains, function(domain) { %>
+  <li class="domain">
+    <a href="#domains/<%= domain.id %>"><%= domain.hostname %></a>
+  </li>
 <% }); %>
 </ul>

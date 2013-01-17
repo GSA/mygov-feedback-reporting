@@ -56,7 +56,7 @@
     }
 
     Domain.prototype.url = function() {
-      return Application.backend + "/domains/" + this.id;
+      return Application.backend + "/domains/" + this.id + ".json";
     };
 
     return Domain;
@@ -113,6 +113,16 @@
       return this.$el.html(JST.home());
     };
 
+    Home.prototype.events = {
+      "submit form": "query"
+    };
+
+    Home.prototype.query = function(e) {
+      e.preventDefault();
+      Application.router.navigate("domain/" + $("#query").val(), true);
+      return false;
+    };
+
     return Home;
 
   })(Backbone.View);
@@ -122,8 +132,21 @@
     __extends(Page, _super);
 
     function Page() {
+      this.render = __bind(this.render, this);
       return Page.__super__.constructor.apply(this, arguments);
     }
+
+    Page.prototype.el = "#content";
+
+    Page.prototype.render = function() {
+      return this.$el.html(JST.page({
+        page: this.model.toJSON()
+      }));
+    };
+
+    Page.prototype.initialize = function() {
+      return this.model.on("change", this.render);
+    };
 
     return Page;
 
@@ -146,8 +169,21 @@
     __extends(Domain, _super);
 
     function Domain() {
+      this.render = __bind(this.render, this);
       return Domain.__super__.constructor.apply(this, arguments);
     }
+
+    Domain.prototype.el = "#content";
+
+    Domain.prototype.render = function() {
+      return this.$el.html(JST.domain({
+        domain: this.model.toJSON()
+      }));
+    };
+
+    Domain.prototype.initialize = function() {
+      return this.model.on("change", this.render);
+    };
 
     return Domain;
 
@@ -166,7 +202,7 @@
 
     Domains.prototype.render = function() {
       return this.$el.html(JST.domains({
-        domains: this.collection
+        domains: this.collection.toJSON()
       }));
     };
 
@@ -182,9 +218,14 @@
       return Router.__super__.constructor.apply(this, arguments);
     }
 
+    Router.prototype.initialize = function() {
+      return this.route(/^domains\/([0-9]+)$/, "domain");
+    };
+
     Router.prototype.routes = {
       "": "home",
-      "domain/:query": "query"
+      "domains/:query": "query",
+      "page/:page": "page"
     };
 
     Router.prototype.home = function() {
@@ -204,6 +245,28 @@
           });
           return view.render();
         }
+      });
+    };
+
+    Router.prototype.page = function(id) {
+      var page, view;
+      page = new Application.Models.Page({
+        id: id
+      });
+      page.fetch();
+      return view = new Application.Views.Page({
+        model: page
+      });
+    };
+
+    Router.prototype.domain = function(id) {
+      var domain, view;
+      domain = new Application.Models.Domain({
+        id: id
+      });
+      domain.fetch();
+      return view = new Application.Views.Domain({
+        model: domain
       });
     };
 

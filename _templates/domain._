@@ -1,0 +1,6 @@
+<h3><%= domain.hostname %></h3>
+<ul class="pages">
+  <% _.each( domain.pages, function(page){ %>
+    <li class="page"><a href="#page/<%= page.id %>"><%= page.title || "(no title)" %></a> &mdash; <%= page.avg_rating || "n/a" %>
+  <% }) %>
+</ul>
