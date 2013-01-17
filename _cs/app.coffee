@@ -9,6 +9,9 @@ window.Application =
 class Application.Models.Page extends Backbone.Model
   url: ->
     Application.backend + "/pages/" + @id
+  
+  initialize: ->
+    @set "comments", new Application.Collections.Comments()
     
 class Application.Collections.Pages extends Backbone.Collection
   model: Application.Models.Page
@@ -37,6 +40,17 @@ class Application.Collections.Domains extends Backbone.Collection
       domain
     data
 
+#comments
+
+class Application.Models.Comment extends Backbone.Model
+
+class Application.Collections.Comments extends Backbone.Collection
+  model: Application.Models.Comment
+  page_id: null
+  
+  url: ->
+    Application.backend + "/pages/" + @page_id + "/comments" 
+
 #views
 class Application.Views.Home extends Backbone.View
   
@@ -60,6 +74,10 @@ class Application.Views.Page extends Backbone.View
     
   initialize: ->
     @model.on "change", @render
+    @model.get("comments").on "reset", @renderComments
+    
+  renderComments: =>
+    jQuery("#commentsDiv").html JST.comments comments: @model.get("comments").toJSON()
     
 class Application.Views.Pages extends Backbone.View
 
@@ -103,7 +121,8 @@ class Router extends Backbone.Router
   
   page: (id) ->
     page = new Application.Models.Page id: id
-    page.fetch()
+    page.fetch success: ->
+      page.get("comments").fetch()
     view = new Application.Views.Page model: page
     
   domain: (id) ->

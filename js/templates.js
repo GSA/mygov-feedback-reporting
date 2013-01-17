@@ -1,5 +1,21 @@
 this["JST"] = this["JST"] || {};
 
+this["JST"]["comments"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<ul id="comments">\n  ';
+ _.each( comments, function(comment){ 
+;__p+='\n    <li class="comment">\n      <div class="body">'+
+( comment.body )+
+'</div>\n      <div class="meta">'+
+( comment.created_at )+
+'</div>\n    </li>\n  ';
+ }) 
+;__p+='\n</li>';
+}
+return __p;
+};
+
 this["JST"]["domain"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
@@ -69,7 +85,7 @@ __p+='<h2>'+
 ( related.title )+
 '</a></li>\n  ';
  }) 
-;__p+='\n</ul>\n\n<h3>Comments</h3>';
+;__p+='\n</ul>\n\n<h3>Comments</h3>\n<div id="commentsDiv">\n</div>';
 }
 return __p;
 };

@@ -25,6 +25,10 @@
       return Application.backend + "/pages/" + this.id;
     };
 
+    Page.prototype.initialize = function() {
+      return this.set("comments", new Application.Collections.Comments());
+    };
+
     return Page;
 
   })(Backbone.Model);
@@ -99,6 +103,38 @@
 
   })(Backbone.Collection);
 
+  Application.Models.Comment = (function(_super) {
+
+    __extends(Comment, _super);
+
+    function Comment() {
+      return Comment.__super__.constructor.apply(this, arguments);
+    }
+
+    return Comment;
+
+  })(Backbone.Model);
+
+  Application.Collections.Comments = (function(_super) {
+
+    __extends(Comments, _super);
+
+    function Comments() {
+      return Comments.__super__.constructor.apply(this, arguments);
+    }
+
+    Comments.prototype.model = Application.Models.Comment;
+
+    Comments.prototype.page_id = null;
+
+    Comments.prototype.url = function() {
+      return Application.backend + "/pages/" + this.page_id + "/comments";
+    };
+
+    return Comments;
+
+  })(Backbone.Collection);
+
   Application.Views.Home = (function(_super) {
 
     __extends(Home, _super);
@@ -132,6 +168,8 @@
     __extends(Page, _super);
 
     function Page() {
+      this.renderComments = __bind(this.renderComments, this);
+
       this.render = __bind(this.render, this);
       return Page.__super__.constructor.apply(this, arguments);
     }
@@ -145,7 +183,14 @@
     };
 
     Page.prototype.initialize = function() {
-      return this.model.on("change", this.render);
+      this.model.on("change", this.render);
+      return this.model.get("comments").on("reset", this.renderComments);
+    };
+
+    Page.prototype.renderComments = function() {
+      return jQuery("#commentsDiv").html(JST.comments({
+        comments: this.model.get("comments").toJSON()
+      }));
     };
 
     return Page;
@@ -253,7 +298,11 @@
       page = new Application.Models.Page({
         id: id
       });
-      page.fetch();
+      page.fetch({
+        success: function() {
+          return page.get("comments").fetch();
+        }
+      });
       return view = new Application.Views.Page({
         model: page
       });

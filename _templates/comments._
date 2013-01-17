@@ -1,0 +1,8 @@
+<ul id="comments">
+  <% _.each( comments, function(comment){ %>
+    <li class="comment">
+      <div class="body"><%= comment.body %></div>
+      <div class="meta"><%= comment.created_at %></div>
+    </li>
+  <% }) %>
+</li>
