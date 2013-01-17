@@ -12,6 +12,7 @@ class Application.Models.Page extends Backbone.Model
   
   initialize: ->
     @set "comments", new Application.Collections.Comments()
+    @get("comments").page_id = @id
     
 class Application.Collections.Pages extends Backbone.Collection
   model: Application.Models.Page

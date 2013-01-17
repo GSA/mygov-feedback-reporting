@@ -26,7 +26,8 @@
     };
 
     Page.prototype.initialize = function() {
-      return this.set("comments", new Application.Collections.Comments());
+      this.set("comments", new Application.Collections.Comments());
+      return this.get("comments").page_id = this.id;
     };
 
     return Page;
